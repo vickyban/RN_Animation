@@ -31,7 +31,7 @@ export default function SharedElementNavigator() {
           return [{ id: `item.${item.id}.photo`, animation: 'move' }];
         }}
       /> */}
-      <Stack.Screen name='example2' component={Example3} options={{ headerShown: false }} />
+      <Stack.Screen name='example2' component={Example2} options={{ headerShown: false }} />
     </Stack.Navigator >
   );
 }

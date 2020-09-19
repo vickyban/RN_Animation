@@ -37,7 +37,7 @@ const ItemDetail = () => {
 
     return (
         <View style={styles.container}>
-            <SharedElement id={`item.${item.id}.photo`} style={[StyleSheet.absoluteFillObject]}>
+            <SharedElement id={`item.${item.id}.photo`} style={[StyleSheet.absoluteFillObject, { opacity: 0.8 }]}>
                 <Image
                     source={item.img}
                     style={{

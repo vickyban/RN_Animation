@@ -1,5 +1,5 @@
 import React, { useRef } from 'react'
-import { StyleSheet, Text, View, FlatList, Animated, Image, TouchableOpacity, Dimensions, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Animated, Image, TouchableWithoutFeedback, Dimensions, SafeAreaView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { SharedElement } from 'react-navigation-shared-element';
 import { useHeaderHeight } from '@react-navigation/stack';
@@ -8,11 +8,11 @@ import { BlurView } from 'expo-blur';
 const AFlatList = Animated.createAnimatedComponent(FlatList);
 
 const items = [
-    { id: 1, title: 'Seilwared', img: require('@assets/unsplash/img1.jpg'), color: '#0C212D' },
-    { id: 2, title: 'Seilwared', img: require('@assets/unsplash/img2.jpg'), color: '#F8EACE' },
-    { id: 3, title: 'Seilwared', img: require('@assets/unsplash/img3.jpg'), color: '#E4E5EA' },
-    { id: 4, title: 'Seilwared', img: require('@assets/unsplash/img4.jpg'), color: '#0C212D' },
-    { id: 5, title: 'Seilwared', img: require('@assets/unsplash/img5.jpg'), color: '#0C212D' },
+    { id: 1, title: 'Shitennoji', subTitle: 'Osaka', img: require('@assets/unsplash/img1.jpg'), color: '#0C212D' },
+    { id: 2, title: 'Shinjuku', subTitle: 'Tokyo', img: require('@assets/unsplash/img2.jpg'), color: '#F8EACE' },
+    { id: 3, title: 'Ochazuke', subTitle: 'Kyoto', img: require('@assets/unsplash/img3.jpg'), color: '#E4E5EA' },
+    { id: 4, title: 'Seilwared', subTitle: 'Osaka', img: require('@assets/unsplash/img4.jpg'), color: '#0C212D' },
+    { id: 5, title: 'Seilwared', subTitle: 'Osaka', img: require('@assets/unsplash/img5.jpg'), color: '#0C212D' },
 ]
 
 const { width } = Dimensions.get('window');
@@ -47,28 +47,30 @@ const Item = ({ item, index, x }: ItemProps) => {
         outputRange: [1, 1.1, 1]
     })
     return (
-        <TouchableOpacity
+        <TouchableWithoutFeedback
             onPress={() => navigation.push('Item', { item })}
-            style={styles.itemContainer}>
-            <SharedElement id={`item.${item.id}.photo`} style={StyleSheet.absoluteFillObject}>
-                <Animated.Image
-                    source={item.img}
-                    style={{
-                        ...StyleSheet.absoluteFillObject,
-                        width: undefined,
-                        height: undefined,
-                        transform: [{ scale }]
-                    }} resizeMode='cover' />
-            </SharedElement>
-            <Animated.View style={{ opacity }}>
-                <BlurView style={{ padding: SPACING }} intensity={80} tint='dark'>
-                    <SharedElement id={`item.${item.id}.location`}>
-                        <Animated.Text style={[styles.location, { transform: [{ translateX: locationTranslateX }] }]}>{item.title}</Animated.Text>
-                    </SharedElement>
-                    <Animated.Text style={[styles.date, { transform: [{ translateX: dateTranslateX }] }]}>{item.title}</Animated.Text>
-                </BlurView>
-            </Animated.View>
-        </TouchableOpacity>
+        >
+            <View style={styles.itemContainer}>
+                <SharedElement id={`item.${item.id}.photo`} style={[StyleSheet.absoluteFillObject, { opacity: 0.8 }]}>
+                    <Animated.Image
+                        source={item.img}
+                        style={{
+                            ...StyleSheet.absoluteFillObject,
+                            width: undefined,
+                            height: undefined,
+                            transform: [{ scale }]
+                        }} resizeMode='cover' />
+                </SharedElement>
+                <Animated.View style={{ opacity }}>
+                    <BlurView style={{ padding: SPACING }} intensity={80} tint='dark'>
+                        <SharedElement id={`item.${item.id}.location`}>
+                            <Animated.Text style={[styles.location, { transform: [{ translateX: locationTranslateX }] }]}>{item.title}</Animated.Text>
+                        </SharedElement>
+                        <Animated.Text style={[styles.date, { transform: [{ translateX: dateTranslateX }] }]}>{item.subTitle}</Animated.Text>
+                    </BlurView>
+                </Animated.View>
+            </View>
+        </TouchableWithoutFeedback>
     )
 }
 
@@ -104,7 +106,9 @@ const styles = StyleSheet.create({
     },
     listTitle: {
         fontWeight: 'bold',
-        fontSize: 20
+        fontSize: 30,
+        marginTop: 50,
+        marginLeft: 10
     },
     itemContainer: {
         position: 'relative',
@@ -112,7 +116,8 @@ const styles = StyleSheet.create({
         height: ITEM_HEIGHT,
         margin: SPACING,
         borderRadius: 20,
-        overflow: 'hidden'
+        overflow: 'hidden',
+        backgroundColor: 'black'
     },
     location: {
         fontWeight: 'bold',
