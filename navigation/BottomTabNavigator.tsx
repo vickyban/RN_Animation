@@ -8,6 +8,7 @@ import useColorScheme from '../hooks/useColorScheme';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import TabBar from '@components/tabbars/tabtar2';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -17,19 +18,35 @@ export default function BottomTabNavigator() {
   return (
     <BottomTab.Navigator
       initialRouteName="TabOne"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
+      tabBar={props => <TabBar {...props} />}
+      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}
+    >
       <BottomTab.Screen
         name="TabOne"
         component={TabOneNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: props => <TabBarIcon name="md-home" {...props} />,
         }}
       />
       <BottomTab.Screen
         name="TabTwo"
         component={TabTwoNavigator}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: props => <TabBarIcon name="md-cart"{...props} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="TabThree"
+        component={TabOneNavigator}
+        options={{
+          tabBarIcon: props => <TabBarIcon name="md-search" {...props} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="TabFour"
+        component={TabTwoNavigator}
+        options={{
+          tabBarIcon: props => <TabBarIcon name="md-calendar" {...props} />,
         }}
       />
     </BottomTab.Navigator>

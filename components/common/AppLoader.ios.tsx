@@ -1,37 +1,28 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { StyleSheet, Text, View, Animated, Easing, Image } from 'react-native';
-import LottieView from 'lottie-react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import useCachedResources from '@hooks/useCachedResources';
 import MaskedView from '@react-native-community/masked-view';
+import { useTransition } from 'react-native-redash';
+import Animated, { interpolate, Extrapolate } from 'react-native-reanimated';
 
 const catIcon = require('@assets/images/catIcon.png');
 
 const AppLoader = ({ children }) => {
     const isAppReady = useCachedResources();
-    const [animationCompleted, setAnimationCompleted] = useState(false);
-    const progress = useRef(new Animated.Value(0)).current;
+    const progress = useTransition(isAppReady, { duration: 3000 });
 
-    useEffect(() => {
-        if (!isAppReady) return;
-        Animated.timing(progress, {
-            toValue: 1,
-            duration: 1000,
-            easing: Easing.in(Easing.ease),
-            useNativeDriver: true
-        }).start(() => setAnimationCompleted(true));
-    }, [isAppReady])
+    if (!isAppReady) return null;
 
-    const opacity = progress.interpolate({
+    const opacity = interpolate(progress, {
         inputRange: [0, 0.15, 0.3],
         outputRange: [0, 1, 1]
     });
-    const scale = progress.interpolate({
+    const scale = interpolate(progress, {
         inputRange: [0, 0.1, 1],
         outputRange: [1, 0.8, 80],
-        extrapolateLeft: 'clamp'
+        extrapolate: Extrapolate.CLAMP
     })
 
-    if (!isAppReady) null;
     return (
         <View style={styles.container}>
             <MaskedView style={StyleSheet.absoluteFillObject} maskElement={

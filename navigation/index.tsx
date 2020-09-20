@@ -7,6 +7,7 @@ import { RootStackParamList } from '../types';
 // import BasicAnimation from './BasicAnimation';
 import SharedElementStack from './SharedElementStack';
 import LinkingConfiguration from './LinkingConfiguration';
+import BottomTabNavigator from './BottomTabNavigator';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -25,7 +26,7 @@ function RootNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       {/* <Stack.Screen name="Root" component={BasicAnimation} /> */}
-      <Stack.Screen name="Root" component={SharedElementStack} />
+      <Stack.Screen name="Root" component={BottomTabNavigator} />
     </Stack.Navigator>
   );
 }

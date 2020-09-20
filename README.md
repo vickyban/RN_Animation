@@ -8,3 +8,7 @@ Example 3: the design from [Stano Bagin](https://dribbble.com/shots/7378780-Trav
 
 Example 3: took design from [this beautiful design by Dimest](https://dribbble.com/shots/5529409-Photography-Motion) \
 ![](./showcase/sharedElement_ex3.gif)
+
+### Experiments with tab bar animation
+Example 2: I don't remember where I first saw the design \
+![](./showcase/tabbar_ex2.gif)
