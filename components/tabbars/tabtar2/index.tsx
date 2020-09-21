@@ -12,7 +12,14 @@ const DOT_SIZE = ICON_SIZE * 1.6;
 const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
     const focusedOptions = descriptors[state.routes[state.index].key].options;
     const activeIndex = state.index;
-    const transition = useSpringTransition(activeIndex);
+    const transition = useSpringTransition(activeIndex, {
+        damping: 17,
+        mass: 1,
+        stiffness: 150,
+        overshootClamping: false,
+        restSpeedThreshold: 0.01,
+        restDisplacementThreshold: 0.001,
+    });
     const activeTransition = useValue(0);
 
     if (focusedOptions.tabBarVisible === false) {

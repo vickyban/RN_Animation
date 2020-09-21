@@ -8,7 +8,7 @@ import useColorScheme from '../hooks/useColorScheme';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
-import TabBar from '@components/tabbars/tabtar2';
+import TabBar from '@components/tabbars/tabtar3';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
