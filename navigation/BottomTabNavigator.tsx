@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, AntDesign } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as React from 'react';
@@ -8,7 +8,7 @@ import useColorScheme from '../hooks/useColorScheme';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
-import TabBar from '@components/tabbars/tabtar3';
+import TabBar from '@components/tabbars/tabtar4';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -25,14 +25,14 @@ export default function BottomTabNavigator() {
         name="TabOne"
         component={TabOneNavigator}
         options={{
-          tabBarIcon: props => <TabBarIcon name="md-home" {...props} />,
+          tabBarIcon: props => <AntDesign name="qrcode" {...props} />,
         }}
       />
       <BottomTab.Screen
         name="TabTwo"
         component={TabTwoNavigator}
         options={{
-          tabBarIcon: props => <TabBarIcon name="md-cart"{...props} />,
+          tabBarIcon: props => <AntDesign name="tagso"{...props} />,
         }}
       />
       <BottomTab.Screen
@@ -46,7 +46,7 @@ export default function BottomTabNavigator() {
         name="TabFour"
         component={TabTwoNavigator}
         options={{
-          tabBarIcon: props => <TabBarIcon name="md-calendar" {...props} />,
+          tabBarIcon: props => <AntDesign name="calendar" {...props} />,
         }}
       />
     </BottomTab.Navigator>

@@ -13,5 +13,11 @@ Example 3: took design from [this beautiful design by Dimest](https://dribbble.c
 Example 2: I don't remember where I first saw the design \
 ![](./showcase/tabbar_ex2.gif)
 
-Example 2: \
+Example 3: \
 ![](./showcase/tabbar_ex3.gif)
+
+Example 4: \
+![](./showcase/tabbar_ex4.gif)
+
+Example 5: \
+![](./showcase/tabbar_ex5.gif)
